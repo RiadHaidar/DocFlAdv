@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutteradvnced/features/login/data/models/login_request_body.dart';
 import 'package:flutteradvnced/features/login/data/models/login_response.dart';
 import 'package:flutteradvnced/features/login/data/repos/login_repo.dart';
@@ -11,7 +12,10 @@ class LoginCubit extends Cubit<LoginState> {
 
   
   LoginCubit(this._loginRepo) : super(const LoginState.initial());
+   final formKey = GlobalKey<FormState>();
 
+TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
 
 void emitLoginStates(LoginRequestBody loginRequestBody)async{
   emit(const LoginState.loading());

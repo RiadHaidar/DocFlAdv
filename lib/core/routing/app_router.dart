@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutteradvnced/core/di/dependency_injection.dart';
 import 'package:flutteradvnced/core/routing/routes.dart';
+import 'package:flutteradvnced/features/home/ui/home_screen.dart';
 import 'package:flutteradvnced/features/login/logic/cubit/login_cubit.dart';
 import 'package:flutteradvnced/features/login/login_screen.dart';
 import 'package:flutteradvnced/features/onboarding/onboarding_screen.dart';
@@ -21,6 +22,8 @@ class AppRouter {
                   child: const LoginScreen(),
                 )
                 );
+    case Routes.homeScreen:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
 
       default:
         return MaterialPageRoute(
