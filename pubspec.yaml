@@ -44,6 +44,8 @@ dependencies:
   flutter_svg: ^2.0.9
   #A flutter plugin for adapting screen and font size.
   flutter_screenutil: ^5.9.0
+  # build auto genrated files
+  build_runner: ^2.4.8
 
 
 
