@@ -6,6 +6,8 @@ import 'package:flutteradvnced/features/login/logic/cubit/login_cubit.dart';
 import 'package:flutteradvnced/features/login/login_screen.dart';
 import 'package:flutteradvnced/features/onboarding/onboarding_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutteradvnced/features/signup/logic/signup_cubit.dart';
+import 'package:flutteradvnced/features/signup/ui/signup_screen.dart';
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     //this arguments to be passed in any screen like this ()
@@ -22,9 +24,16 @@ class AppRouter {
                   child: const LoginScreen(),
                 )
                 );
+
+    case Routes.signupScreen:
+        return MaterialPageRoute(builder:(_)=> (
+          BlocProvider(
+          create: (context) => getIt<SignUpCubit>(),
+          child: const SignUpScreen(),
+          )
+        ));
     case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(
