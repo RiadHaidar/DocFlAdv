@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutteradvnced/core/helpers/extensions.dart';
 import 'package:flutteradvnced/core/helpers/spacing.dart';
-import 'package:flutteradvnced/core/routing/routes.dart';
 import 'package:flutteradvnced/core/theming/styles.dart';
 import 'package:flutteradvnced/core/widgets/app_text_button.dart';
-import 'package:flutteradvnced/core/widgets/app_text_from_field.dart';
-import 'package:flutteradvnced/features/login/ui/%20widgets/already_have_account_text.dart';
-import 'package:flutteradvnced/features/login/ui/%20widgets/email_and_password.dart';
-import 'package:flutteradvnced/features/login/ui/%20widgets/terms_and_conditions_text.dart';
+import 'package:flutteradvnced/features/signup/ui/widgets/email_and_password.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -28,7 +23,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-            const  EmailAndPassword(),
                 Text(
                   'Create Account',
                   style: TextStyles.font24BlueBold,
@@ -38,6 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
                 style: TextStyles.font13GrayRegular,
               ),
+                          const  EmailAndPassword(),
+
               verticalSpace(36),
             Column(
                 children: [
@@ -56,13 +52,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   //    validateThenDoLogin(context);
                     },
                   ),
-                  verticalSpace(16),
-                  GestureDetector(child: const AlreadyHaveAccountText(), 
-                  onTap: (){
-                    context.pushNamed(Routes.loginScreen);
-                  },),
-                  verticalSpace(60),
-                  const TermsAndConditionsText(),
+                  // verticalSpace(16),
+                  // GestureDetector(child: const AlreadyHaveAccountText(), 
+                  // onTap: (){
+                  //   context.pushNamed(Routes.loginScreen);
+                  // },),
+                  // verticalSpace(60),
+                  // const TermsAndConditionsText(),
            //       const LoginBlocListener()
                 ],
               )
