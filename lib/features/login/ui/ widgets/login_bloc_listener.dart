@@ -15,7 +15,8 @@ class LoginBlocListener extends StatelessWidget {
       listenWhen: (previous, current) =>
           current is Loading || current is Success || current is Error,
       listener: (context, state) {
-        state.whenOrNull(loading: () {
+        state.whenOrNull(
+            loading: () {
           showDialog(
               context: context,
               builder: (context) => const Center(child: CircularProgressIndicator()));

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutteradvnced/core/theming/colors.dart';
-import 'package:flutteradvnced/core/theming/font_wdight_helper.dart';
+import 'package:flutteradvnced/core/theming/font_weight_helper.dart';
 
 class TextStyles {
   static TextStyle font24BlackBold = TextStyle(
