@@ -6,8 +6,10 @@ import 'package:flutteradvnced/core/theming/styles.dart';
 import 'package:flutteradvnced/core/widgets/app_text_button.dart';
 import 'package:flutteradvnced/features/signup/data/models/signup_request_body.dart';
 import 'package:flutteradvnced/features/signup/logic/signup_cubit.dart';
-import 'package:flutteradvnced/features/signup/ui/widgets/email_and_password.dart';
+import 'package:flutteradvnced/features/signup/ui/widgets/already_have_account_text.dart';
+import 'package:flutteradvnced/features/signup/ui/widgets/signup_form.dart';
 import 'package:flutteradvnced/features/signup/ui/widgets/signup_bloc_listener.dart';
+import 'package:flutteradvnced/features/signup/ui/widgets/terms_and_conditions_text.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -36,17 +38,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   'Sign up now and start exploring all that our app has to offer. We\'re excited to welcome you to our community!',
                   style: TextStyles.font13GrayRegular,
                 ),
-                const EmailAndPassword(),
                 verticalSpace(36),
                 Column(
                   children: [
-                    //    const EmailAndPassword(),
-                    Align(
-                        alignment: AlignmentDirectional.centerEnd,
-                        child: Text(
-                          'Forgot Password?',
-                          style: TextStyles.font13BlueRegular,
-                        )),
+                    const SignUpForm(),
                     verticalSpace(40),
                     AppTextButton(
                       buttonText: 'Signup',
@@ -57,17 +52,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         //    validateThenDoLogin(context);
                       },
                     ),
-
-                const    SignUpBlocListener()
-
-                    // verticalSpace(16),
-                    // GestureDetector(child: const AlreadyHaveAccountText(),
-                    // onTap: (){
-                    //   context.pushNamed(Routes.loginScreen);
-                    // },),
-                    // verticalSpace(60),
-                    // const TermsAndConditionsText(),
-                    //       const LoginBlocListener()
+                         verticalSpace(16),
+                    const TermsAndConditionsText(),
+                    verticalSpace(30),
+                    const AlreadyHaveAccountText(),
+                    const SignUpBlocListener()
                   ],
                 )
               ],
@@ -81,13 +70,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
 void validateThenDoLogin(BuildContext context) {
   if (context.read<SignUpCubit>().formKey.currentState!.validate()) {
-    context.read<SignUpCubit>().emitSingUpStates(SignUpRequestBody(
-          email: context.read<SignUpCubit>().emailController.text,
-          password: context.read<SignUpCubit>().passwordController.text,
-          name: context.read<SignUpCubit>().nameController.text,
-          phone: '',
-          gender: '',
-          passwordConfirmation: '',
-        ));
+    context.read<SignUpCubit>().emitSingUpStates();
   }
 }

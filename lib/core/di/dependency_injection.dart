@@ -22,10 +22,10 @@ getIt.registerLazySingleton<ApiService>(() => ApiService(dio, baseUrl: ApiConsta
 // login 
 
 getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
+getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
 getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
-getIt.registerLazySingleton<SignUpCubit>(() => SignUpCubit(getIt()));
+getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
 
 

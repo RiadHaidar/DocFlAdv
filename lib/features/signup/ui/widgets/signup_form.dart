@@ -7,14 +7,14 @@ import 'package:flutteradvnced/core/widgets/app_text_from_field.dart';
 import 'package:flutteradvnced/features/signup/logic/signup_cubit.dart';
 import 'package:flutteradvnced/features/signup/ui/widgets/password_validations.dart';
 
-class EmailAndPassword extends StatefulWidget {
-  const EmailAndPassword({super.key});
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
 
   @override
-  State<EmailAndPassword> createState() => _EmailAndPasswordState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _EmailAndPasswordState extends State<EmailAndPassword> {
+class _SignUpFormState extends State<SignUpForm> {
   bool isObscureText = true;
   bool hasLowerCase = false;
   bool hasUpperCase = false;
@@ -52,6 +52,17 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
         key: context.read<SignUpCubit>().formKey,
         child: Column(
           children: [
+                  AppTextFromField(
+              hintText: 'Name',
+              validator: (value) {
+                if (value == null ||
+                    value.isEmpty) {
+                  return 'Please enter your name';
+                }
+              },
+              controller: context.read<SignUpCubit>().nameController,
+            ),
+            verticalSpace(18),
             AppTextFromField(
               hintText: 'Email',
               validator: (value) {
@@ -64,6 +75,18 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               controller: context.read<SignUpCubit>().emailController,
             ),
             verticalSpace(18),
+                  AppTextFromField(
+            hintText: 'Phone number',
+            validator: (value) {
+              if (value == null ||
+                  value.isEmpty ||
+                  !AppRegex.isPhoneNumberValid(value)) {
+                return 'Please enter a valid phone number';
+              }
+            },
+            controller: context.read<SignUpCubit>().phoneController,
+          ),
+          verticalSpace(18),
             AppTextFromField(
               hintText: 'Password',
               isObscureText: isObscureText,
@@ -85,6 +108,34 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
                 }
               },
             ),
+     
+       
+            verticalSpace(18),
+            AppTextFromField(
+              hintText: 'Confirmation Password',
+              isObscureText: isObscureText,
+              controller: context.read<SignUpCubit>().confirmPasswordController,
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    isObscureText = !isObscureText;
+                  });
+                },
+                child: Icon(
+                  color: ColorsManager.mainBlue,
+                  isObscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a valid password';
+                }
+                if(value!=context.read<SignUpCubit>().passwordController.text){
+                  return 'Your password doesn\'t match';
+                }
+              },
+            ),
+         
             verticalSpace(24),
             PasswordValidations(
               hasLowerCase: hasLowerCase,

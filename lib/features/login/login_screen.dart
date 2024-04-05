@@ -10,7 +10,7 @@ import 'package:flutteradvnced/core/widgets/app_text_button.dart';
 import 'package:flutteradvnced/core/widgets/app_text_from_field.dart';
 import 'package:flutteradvnced/features/login/data/models/login_request_body.dart';
 import 'package:flutteradvnced/features/login/logic/cubit/login_cubit.dart';
-import 'package:flutteradvnced/features/login/ui/%20widgets/already_have_account_text.dart';
+import 'package:flutteradvnced/features/login/ui/%20widgets/dont_have_account_text.dart';
 import 'package:flutteradvnced/features/login/ui/%20widgets/email_and_password.dart';
 import 'package:flutteradvnced/features/login/ui/%20widgets/login_bloc_listener.dart';
 import 'package:flutteradvnced/features/login/ui/%20widgets/terms_and_conditions_text.dart';
@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                     },
                   ),
                   verticalSpace(16),
-                  GestureDetector(child: const AlreadyHaveAccountText(), 
+                  GestureDetector(child: const DontHaveAccountText(), 
                   onTap: (){
                     context.pushNamed(Routes.signupScreen);
                   },),
@@ -77,8 +77,7 @@ class LoginScreen extends StatelessWidget {
 
 void validateThenDoLogin(BuildContext context) {
   if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-    context.read<LoginCubit>().emitLoginStates(LoginRequestBody(
-        email: context.read<LoginCubit>().emailController.text,
-        password: context.read<LoginCubit>().passwordController.text));
+    context.read<LoginCubit>().emitLoginStates(
+        );
   }
 }
